@@ -1,0 +1,24 @@
+'use client';
+
+import { useAppSelector } from '@/redux/hook';
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react'
+
+const Page = () => {
+  const router = useRouter();
+   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+ 
+   useEffect(() => {
+     if (isAuthenticated) {
+       router.push('/app/dashboard');
+     }
+   }, [isAuthenticated, router]);
+ 
+   if (isAuthenticated) {
+     return null; // Return null while redirecting
+   }
+
+  return null
+}
+
+export default Page
