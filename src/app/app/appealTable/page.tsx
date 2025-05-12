@@ -17,6 +17,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import { Button } from '@/components/ui/Button';
 import { EllipsisVertical, FolderDown } from 'lucide-react';
 import { TaxRecord, updateRecord, deleteRecord, addRecord } from '@/redux/slices/appealTableSlice';
+import { toast } from 'react-toastify';
 
 const initialFormData: TaxRecord = {
   id: '',
@@ -50,16 +51,24 @@ export default function TablePage() {
     setDeleteDialogOpen(true);
   };
 
-  const handleSubmit = () => {
-    console.log('Form Data:', formData);
-    if (selectedUser.id) {
-      dispatch(updateRecord({ ...formData, id: selectedUser.id }));
-    } else {
-      dispatch(addRecord(formData));
-    }
-    setAddDialogOpen(false);
-    setFormData(initialFormData);
-  };
+const handleSubmit = () => {
+  console.log('Form Data:', formData);
+
+  // Validation for required fields
+  if (!formData.taxYear || !formData.company || !formData.state || !formData.assessor || !formData.accountNumber || !formData.appealDeadline) {
+    toast.error("Please fill in all required fields.");
+    return;
+  }
+
+  if (selectedUser.id) {
+    dispatch(updateRecord({ ...formData, id: selectedUser.id }));
+  } else {
+    dispatch(addRecord(formData));
+  }
+  setAddDialogOpen(false);
+  setFormData(initialFormData);
+  toast.success("Record saved successfully!");
+};
 
   const handleConfirmDelete = () => {
     if (selectedUser.id) {
@@ -67,6 +76,7 @@ export default function TablePage() {
     }
     setDeleteDialogOpen(false);
     setSelectedUser({} as TaxRecord);
+    toast.warn("Record deleted successfully!");
   };
 
    const handleExport = () => {
