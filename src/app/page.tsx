@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     // Redirect to the appropriate page based on authentication status
     if (isAuthenticated) {
-      router.push('/app/dashboard');
+      router.push('/app/appealTable');
     } else {
       router.push('/login');
     }

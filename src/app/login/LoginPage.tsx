@@ -12,7 +12,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/app/dashboard');
+      router.push('/app/appealTable');
     }
   }, [isAuthenticated, router]);
 

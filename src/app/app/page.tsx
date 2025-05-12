@@ -10,7 +10,7 @@ const Page = () => {
  
    useEffect(() => {
      if (isAuthenticated) {
-       router.push('/app/dashboard');
+       router.push('/app/appealTable');
      }
    }, [isAuthenticated, router]);
  

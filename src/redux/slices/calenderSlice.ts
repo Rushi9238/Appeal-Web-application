@@ -49,7 +49,7 @@ const calendarSlice = createSlice({
       }
     },
     // Removed the return statement to avoid type mismatch
-    getEventsForDate: (state, action: PayloadAction<string>) => {
+    getEventsForDate: () => {
       // This reducer does nothing now; logic should be moved to a selector
     },
   },
