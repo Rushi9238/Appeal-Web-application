@@ -48,11 +48,16 @@ const calendarSlice = createSlice({
         state.events[index] = action.payload;
       }
     },
+    // Removed the return statement to avoid type mismatch
     getEventsForDate: (state, action: PayloadAction<string>) => {
-      return state.events.filter((event) => event.date === action.payload);
+      // This reducer does nothing now; logic should be moved to a selector
     },
   },
 });
+
+// Selector function to get events for a specific date
+export const selectEventsForDate = (state: CalendarState, date: string) =>
+  state.events.filter((event) => event.date === date);
 
 export const { addEvent, deleteEvent, updateEvent, getEventsForDate } = calendarSlice.actions;
 
