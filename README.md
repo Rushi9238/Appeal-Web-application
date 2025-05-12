@@ -26,50 +26,50 @@ A fully functional web application built with **Next.js** and **TypeScript**, us
 
 src/
 ├── app/
-│ ├── appealTable/
-│ │ ├── columns.tsx
-│ │ ├── Pagination.tsx
-│ │ └── page.tsx
-│ ├── calender/
-│ │ ├── Calender.tsx
-│ │ └── page.tsx
-│ ├── dashboard/
-│ │ ├── Dashboard.tsx
-│ │ └── page.tsx
-│ ├── settings/
-│ │ ├── layout.tsx
-│ │ └── page.tsx
-│ ├── login/
-│ │ ├── LoginPage.tsx
-│ │ └── page.tsx
-│ ├── layout.tsx
-│ ├── globals.css
-│ ├── providers.tsx
-│ └── page.tsx
+│   ├── appealTable/
+│   │   ├── columns.tsx
+│   │   ├── Pagination.tsx
+│   │   └── page.tsx
+│   ├── calender/
+│   │   ├── Calender.tsx
+│   │   └── page.tsx
+│   ├── dashboard/
+│   │   ├── Dashboard.tsx
+│   │   └── page.tsx
+│   ├── settings/
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── login/
+│   │   ├── LoginPage.tsx
+│   │   └── page.tsx
+│   ├── layout.tsx
+│   ├── globals.css
+│   ├── providers.tsx
+│   └── page.tsx
 │
 ├── components/
-│ ├── auth/
-│ │ └── login-form.tsx
-│ ├── layout/
-│ │ ├── Header.tsx
-│ │ └── SideBar.tsx
-│ └── ui/
-│ ├── Button.tsx
-│ ├── dialog/
-│ ├── dropdown-menu.tsx
-│ ├── Logo.tsx
-│ ├── DataTable.tsx
-│ ├── page-header.tsx
-│ └── ThemeToggle.tsx
+│   ├── auth/
+│   │   └── login-form.tsx
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   └── SideBar.tsx
+│   └── ui/
+│       ├── Button.tsx
+│       ├── dialog/
+│       ├── dropdown-menu.tsx
+│       ├── Logo.tsx
+│       ├── DataTable.tsx
+│       ├── page-header.tsx
+│       └── ThemeToggle.tsx
 │
 ├── redux/
-│ ├── slices/
-│ │ ├── appealTableSlice.ts
-│ │ ├── authSlice.ts
-│ │ ├── calenderSlice.ts
-│ │ └── tableSlice.ts
-│ ├── store.ts
-│ └── hook.ts
+│   ├── slices/
+│   │   ├── appealTableSlice.ts
+│   │   ├── authSlice.ts
+│   │   ├── calenderSlice.ts
+│   │   └── tableSlice.ts
+│   ├── store.ts
+│   └── hook.ts
 
 
 ---
