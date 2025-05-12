@@ -106,7 +106,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                         isCollapsed={isCollapsed}
                         className='mb-4 '
                     />
-                    <Button onClick={handleLogout} className=' text-center bg-[#3fc3ac] text-white' >
+                    <Button onClick={handleLogout} className=' text-center bg-[#3fc3ac] text-white cursor-pointer' >
                         <LogOut className="h-5 w-5" /> {isCollapsed ? '' : 'Logout'}
                     </Button>
                 </nav>
