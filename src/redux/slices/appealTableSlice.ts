@@ -77,7 +77,7 @@ const appealTableSlice = createSlice({
         id: `TR${state.items.length + 1}`,
         ...action.payload,
       };
-      state.items.push(newRecord);
+      state.items.unshift(newRecord);
     },
     updateRecord: (state, action: PayloadAction<Partial<TaxRecord> & { id: string }>) => {
       const index = state.items.findIndex((item) => item.id === action.payload.id);
