@@ -1,36 +1,190 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Appeals Web Application
 
-## Getting Started
+A production‑ready Next.js 13 + TypeScript project that converts a Figma design into code, secures every route behind authentication, and ships with Redux Toolkit state‑management (persisted with redux‑persist), a collapsible sidebar, a dynamic CRUD data table, and a full‑featured calendar for events & reminders.
 
-First, run the development server:
+✨ Key Features
 
-```bash
+Category
+
+Details
+
+Authentication
+
+All inside‑app routes are protected. Unauthenticated users are redirected to /login.
+
+State Management
+
+Redux Toolkit slices with automatic persistence via redux‑persist.
+
+Sidebar Navigation
+
+Responsive sidebar that collapses/expands on click, showing icons only or icons + labels.
+
+Appeal Table
+
+Re‑usable DataTable component wired to Redux. Supports Create, Read, Update, Delete with pagination.
+
+Calendar
+
+Month view. Click any date to add Event (blue) or Reminder (green). Multiple entries per day; edit & delete supported.
+
+Reusable UI
+
+Buttons, dialogs, dropdown menus, header, theme‑toggle, etc., designed for easy reuse.
+
+🔐 Dummy Credentials
+
+Email   : user@example.com
+Password: test123
+
+Use these to explore the app without setting up a backend.
+
+🛠 Tech Stack
+
+Next.js 13 (App Router)
+
+React 18 + TypeScript
+
+Redux Toolkit & redux‑persist
+
+Tailwind CSS (with PostCSS) ✧
+
+Lucide‑react for icons
+
+ESLint + Prettier configuration included
+
+🗂 Project Structure
+
+src/
+│
+├── app/                    # App‑router folders (each = route)
+│   ├── appealTable/        # ➜ /appealTable
+│   │   ├── columns.tsx
+│   │   ├── page.tsx
+│   │   └── Pagination.tsx
+│   │
+│   ├── calender/           # ➜ /calender
+│   │   ├── Calender.tsx
+│   │   └── page.tsx
+│   │
+│   ├── dashboard/          # ➜ /dashboard
+│   │   ├── Dashboard.tsx
+│   │   └── page.tsx
+│   │
+│   ├── settings/           # ➜ /settings
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   │
+│   └── login/              # ➜ /login
+│       ├── LoginPage.tsx
+│       └── page.tsx
+│
+├── components/             # Global reusable components
+│   ├── auth/               # Login form, etc.
+│   │   └── login‑form.tsx
+│   ├── layout/             # Shell UI: header + sidebar
+│   │   ├── Header.tsx
+│   │   └── SideBar.tsx
+│   └── ui/                 # Buttons, dialogs, DataTable, etc.
+│       ├── Button.tsx
+│       ├── dialog/
+│       ├── dropdown‑menu.tsx
+│       ├── DataTable.tsx
+│       ├── page‑header.tsx
+│       └── ThemeToggel.tsx
+│
+├── redux/                  # Redux Toolkit logic
+│   ├── slices/
+│   │   ├── appealTableSlice.ts
+│   │   ├── authSlice.ts
+│   │   ├── calenderSlice.ts
+│   │   └── tableSlice.ts
+│   ├── store.ts            # Configure store & persist
+│   └── hook.ts             # Typed hooks (useAppDispatch, useAppSelector)
+│
+├── globals.css             # Global styles
+└── providers.tsx           # App‑wide context providers (Redux, Theme, etc.)
+
+🚀 Getting Started
+
+# 1. Clone the repo
+$ git clone https://github.com/your‑org/appeals‑web‑application.git
+$ cd appeals‑web‑application
+
+# 2. Install dependencies
+$ npm install   # or pnpm install / yarn
+
+# 3. Run in dev mode
+$ npm run dev
+
+# 4. Open http://localhost:3000 in your browser
+
+Tip: The first authenticated route after login is /dashboard.
+
+📄 Available Scripts
+
+Script
+
+Description
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start Next.js dev server (hot reload)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Production build
 
-## Learn More
+npm start
 
-To learn more about Next.js, take a look at the following resources:
+Start the built app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npm run lint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Lint & fix code with ESLint
 
-## Deploy on Vercel
+npm run format
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Format codebase with Prettier
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🖱️ Usage Guide
+
+Login with the dummy credentials.
+
+Navigate via the sidebar; collapse/expand as needed.
+
+Appeal Table
+
+Add: click the + New button.
+
+Edit/Delete: use the inline action icons.
+
+Calendar
+
+Click any date ➜ choose Add Event or Add Reminder.
+
+Entries show under the date (blue = event, green = reminder).
+
+Click an entry to edit or delete.
+
+Data survives page reloads thanks to redux‑persist.
+
+📸 Screenshots (optional)
+
+Add GIFs or screenshots here to showcase the sidebar, table CRUD, and calendar interactions.
+
+🛡️ License
+
+This project is licensed under the MIT License — see the LICENSE file for details.
+
+🙋 Contributing
+
+Fork the repo & create a feature branch.
+
+Commit your changes.
+
+Push the branch & open a pull request.
+
+PRs are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+Built with ❤️ by Rushikesh Patil
