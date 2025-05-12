@@ -1,190 +1,123 @@
-Appeals Web Application
+# Appeals Web Application
 
-A production‑ready Next.js 13 + TypeScript project that converts a Figma design into code, secures every route behind authentication, and ships with Redux Toolkit state‑management (persisted with redux‑persist), a collapsible sidebar, a dynamic CRUD data table, and a full‑featured calendar for events & reminders.
+A fully functional web application built with **Next.js** and **TypeScript**, using **Redux Toolkit** and **redux-persist** for state management. The UI is developed by converting **Figma designs to code** with reusable components and clean architecture.
 
-✨ Key Features
+---
 
-Category
+## 🚀 Features
 
-Details
+- ✅ Figma to Code conversion  
+- ✅ Sidebar with collapsible menu options (icons + labels)  
+- ✅ Data Table with full **CRUD operations**  
+- ✅ Calendar with:  
+  - Add **Events** & **Reminders**  
+  - View by **month**  
+  - **Multiple entries per day**  
+  - Color-coded display for easy distinction  
+  - Edit/Delete existing items  
+- ✅ Redux Toolkit with `redux-persist` for state persistence  
+- ✅ Protected routes (authentication required)  
+- ✅ Dummy credentials for testing  
+- ✅ Reusable and modular components  
 
-Authentication
+---
 
-All inside‑app routes are protected. Unauthenticated users are redirected to /login.
-
-State Management
-
-Redux Toolkit slices with automatic persistence via redux‑persist.
-
-Sidebar Navigation
-
-Responsive sidebar that collapses/expands on click, showing icons only or icons + labels.
-
-Appeal Table
-
-Re‑usable DataTable component wired to Redux. Supports Create, Read, Update, Delete with pagination.
-
-Calendar
-
-Month view. Click any date to add Event (blue) or Reminder (green). Multiple entries per day; edit & delete supported.
-
-Reusable UI
-
-Buttons, dialogs, dropdown menus, header, theme‑toggle, etc., designed for easy reuse.
-
-🔐 Dummy Credentials
-
-Email   : user@example.com
-Password: test123
-
-Use these to explore the app without setting up a backend.
-
-🛠 Tech Stack
-
-Next.js 13 (App Router)
-
-React 18 + TypeScript
-
-Redux Toolkit & redux‑persist
-
-Tailwind CSS (with PostCSS) ✧
-
-Lucide‑react for icons
-
-ESLint + Prettier configuration included
-
-🗂 Project Structure
+## 📁 Project Structure
 
 src/
+├── app/
+│ ├── appealTable/
+│ │ ├── columns.tsx
+│ │ ├── Pagination.tsx
+│ │ └── page.tsx
+│ ├── calender/
+│ │ ├── Calender.tsx
+│ │ └── page.tsx
+│ ├── dashboard/
+│ │ ├── Dashboard.tsx
+│ │ └── page.tsx
+│ ├── settings/
+│ │ ├── layout.tsx
+│ │ └── page.tsx
+│ ├── login/
+│ │ ├── LoginPage.tsx
+│ │ └── page.tsx
+│ ├── layout.tsx
+│ ├── globals.css
+│ ├── providers.tsx
+│ └── page.tsx
 │
-├── app/                    # App‑router folders (each = route)
-│   ├── appealTable/        # ➜ /appealTable
-│   │   ├── columns.tsx
-│   │   ├── page.tsx
-│   │   └── Pagination.tsx
-│   │
-│   ├── calender/           # ➜ /calender
-│   │   ├── Calender.tsx
-│   │   └── page.tsx
-│   │
-│   ├── dashboard/          # ➜ /dashboard
-│   │   ├── Dashboard.tsx
-│   │   └── page.tsx
-│   │
-│   ├── settings/           # ➜ /settings
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   │
-│   └── login/              # ➜ /login
-│       ├── LoginPage.tsx
-│       └── page.tsx
+├── components/
+│ ├── auth/
+│ │ └── login-form.tsx
+│ ├── layout/
+│ │ ├── Header.tsx
+│ │ └── SideBar.tsx
+│ └── ui/
+│ ├── Button.tsx
+│ ├── dialog/
+│ ├── dropdown-menu.tsx
+│ ├── Logo.tsx
+│ ├── DataTable.tsx
+│ ├── page-header.tsx
+│ └── ThemeToggle.tsx
 │
-├── components/             # Global reusable components
-│   ├── auth/               # Login form, etc.
-│   │   └── login‑form.tsx
-│   ├── layout/             # Shell UI: header + sidebar
-│   │   ├── Header.tsx
-│   │   └── SideBar.tsx
-│   └── ui/                 # Buttons, dialogs, DataTable, etc.
-│       ├── Button.tsx
-│       ├── dialog/
-│       ├── dropdown‑menu.tsx
-│       ├── DataTable.tsx
-│       ├── page‑header.tsx
-│       └── ThemeToggel.tsx
-│
-├── redux/                  # Redux Toolkit logic
-│   ├── slices/
-│   │   ├── appealTableSlice.ts
-│   │   ├── authSlice.ts
-│   │   ├── calenderSlice.ts
-│   │   └── tableSlice.ts
-│   ├── store.ts            # Configure store & persist
-│   └── hook.ts             # Typed hooks (useAppDispatch, useAppSelector)
-│
-├── globals.css             # Global styles
-└── providers.tsx           # App‑wide context providers (Redux, Theme, etc.)
+├── redux/
+│ ├── slices/
+│ │ ├── appealTableSlice.ts
+│ │ ├── authSlice.ts
+│ │ ├── calenderSlice.ts
+│ │ └── tableSlice.ts
+│ ├── store.ts
+│ └── hook.ts
 
-🚀 Getting Started
 
-# 1. Clone the repo
-$ git clone https://github.com/your‑org/appeals‑web‑application.git
-$ cd appeals‑web‑application
+---
 
-# 2. Install dependencies
-$ npm install   # or pnpm install / yarn
+## 🔐 Authentication
 
-# 3. Run in dev mode
-$ npm run dev
+All application routes are **protected**. Users **must log in** to access the internal pages.
 
-# 4. Open http://localhost:3000 in your browser
+### Dummy Credentials
 
-Tip: The first authenticated route after login is /dashboard.
+ Username: 'admin@example.com',
+password: 'password123',
 
-📄 Available Scripts
 
-Script
+---
 
-Description
+## 📅 Calendar Module
 
-npm run dev
+- Click a date to:
+  - ➕ Add an Event  
+  - 🔔 Add a Reminder  
+- Distinct **colors** for events and reminders  
+- **Multiple** entries per date supported  
+- Edit & Delete operations available  
 
-Start Next.js dev server (hot reload)
+---
 
-npm run build
+## 📦 Tech Stack
 
-Production build
+- **Next.js** (App Router)  
+- **TypeScript**  
+- **Redux Toolkit** + `redux-persist`  
+- **ShadCN UI** or custom reusable components  
+- **CSS Modules / TailwindCSS**  
+- **React Icons**
 
-npm start
+---
 
-Start the built app
+## ✅ Development Notes
 
-npm run lint
+- Follows best practices for state separation and modular architecture  
+- Emphasizes reusable UI and logic  
+- Code is scalable and maintainable  
 
-Lint & fix code with ESLint
+---
 
-npm run format
+## 📄 License
 
-Format codebase with Prettier
+This project is licensed for development and learning purposes.
 
-🖱️ Usage Guide
-
-Login with the dummy credentials.
-
-Navigate via the sidebar; collapse/expand as needed.
-
-Appeal Table
-
-Add: click the + New button.
-
-Edit/Delete: use the inline action icons.
-
-Calendar
-
-Click any date ➜ choose Add Event or Add Reminder.
-
-Entries show under the date (blue = event, green = reminder).
-
-Click an entry to edit or delete.
-
-Data survives page reloads thanks to redux‑persist.
-
-📸 Screenshots (optional)
-
-Add GIFs or screenshots here to showcase the sidebar, table CRUD, and calendar interactions.
-
-🛡️ License
-
-This project is licensed under the MIT License — see the LICENSE file for details.
-
-🙋 Contributing
-
-Fork the repo & create a feature branch.
-
-Commit your changes.
-
-Push the branch & open a pull request.
-
-PRs are welcome! For major changes, please open an issue first to discuss what you would like to change.
-
-Built with ❤️ by Rushikesh Patil
+---
