@@ -2,7 +2,7 @@
 
 import { useAppSelector } from '@/redux/hook';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 const Page = () => {
   const router = useRouter();
@@ -18,7 +18,9 @@ const Page = () => {
      return null; // Return null while redirecting
    }
 
-  return null
+  return <>
+  Loading
+  </>
 }
 
 export default Page

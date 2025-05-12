@@ -3,7 +3,6 @@
 import * as XLSX from 'xlsx';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { addUser, updateUser, deleteUser } from '@/redux/slices/tableSlice';
 import { DataTable } from '@/components/DataTable';
 import { columns } from './columns';
 import {
@@ -210,7 +209,7 @@ export default function TablePage() {
                 <label className='text-sm'>Select Status</label>
                 <select
                   value={formData.status || 'Not Sent'}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, status: e.target.value as "Not Sent" | "Sent" })}
                   className="w-full border rounded px-3 py-2"
                   disabled={!selectedUser.id}
                 >

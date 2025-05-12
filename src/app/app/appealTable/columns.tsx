@@ -2,8 +2,7 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 import { TaxRecord } from '@/redux/slices/appealTableSlice';
-import { useState } from 'react';
-import { MoreHorizontal, Pencil, Trash } from 'lucide-react';
+import { Pencil, Trash } from 'lucide-react';
 
 export const columns = (
   onEdit: (item: TaxRecord) => void,

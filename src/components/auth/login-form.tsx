@@ -6,6 +6,18 @@ import Cookies from 'js-cookie';
 import { useAppDispatch } from '@/redux/hook';
 import { loginStart, loginSuccess, loginFailure  } from '@/redux/slices/authSlice';
 
+type User = {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+};
+
+type LoginResponse = {
+  user: User;
+  token: string;
+};
+
 export default function LoginForm() {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -41,34 +53,46 @@ export default function LoginForm() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!validateForm()) return;
 
-    setIsLoading(true);
-    dispatch(loginStart());
+  setIsLoading(true);
+  dispatch(loginStart());
 
-    try {
-      // Simulate login API call
-      const response:any = await new Promise<{ token: string }>((resolve) =>
-        setTimeout(() => resolve({ token: 'fake-jwt-token' }), 1000)
-      );
+  try {
+    // Simulate login API call
+    const response: LoginResponse = await new Promise<LoginResponse>((resolve) =>
+      setTimeout(() =>
+        resolve({
+          token: 'fake-jwt-token',
+          user: {
+            id: '1',
+            email: 'admin@example.com',
+            name: 'Admin User',
+            role: 'admin',
+          },
+        }),
+        1000
+      )
+    );
 
-      dispatch(loginSuccess(response));
+    dispatch(loginSuccess(response));
 
-      // Set cookie for middleware authentication
-      Cookies.set('token', response.token, {
-        expires: formData.rememberMe ? 30 : 1, // 30 days or 1 day
-        path: '/',
-      });
+    // Set cookie for middleware authentication
+    Cookies.set('token', response.token, {
+      expires: formData.rememberMe ? 30 : 1, // 30 days or 1 day
+      path: '/',
+    });
 
-      router.push('/dashboard');
-    } catch (error) {
-      dispatch(loginFailure('Login failed'));
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    router.push('/dashboard');
+  } catch (error) {
+    console.error('Login failed:', error); // Log the error
+    dispatch(loginFailure('Login failed'));
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>

@@ -12,7 +12,6 @@ import {
   subMonths,
   parseISO,
 } from "date-fns";
-import { PageHeader } from "@/components/page-header";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import {
   Dialog,
@@ -24,7 +23,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/Button";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { addEvent, deleteEvent, updateEvent } from "@/redux/slices/calenderSlice";
+import { addEvent, deleteEvent } from "@/redux/slices/calenderSlice";
 
 // Define event types
 interface CalendarEvent {
@@ -37,7 +36,6 @@ interface CalendarEvent {
 
 export default function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
@@ -47,6 +45,8 @@ export default function CalendarPage() {
     description: "",
     type: "event",
   });
+
+  
 
   // Redux hooks
   const dispatch = useAppDispatch();
@@ -93,7 +93,6 @@ export default function CalendarPage() {
 
   // Handle date click
   const handleDateClick = (date: Date) => {
-    setSelectedDate(date);
 
     // Check if there are events for this date
     const dateEvents = getEventsForDate(date);
@@ -291,7 +290,7 @@ export default function CalendarPage() {
             <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={handleAddEvent}>Add</Button>
+            <Button className="text-center bg-[#3fc3ac] text-white" onClick={handleAddEvent}>Add</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -320,6 +319,7 @@ export default function CalendarPage() {
           </div>
           <DialogFooter>
             <Button
+            className="text-center bg-[#3fc3ac] text-white"
               onClick={() => {
                 setNewEvent({ ...newEvent, date: selectedEvent?.date || new Date().toISOString() });
                 setIsViewDialogOpen(false);
@@ -328,7 +328,7 @@ export default function CalendarPage() {
             >
               Add Event
             </Button>
-            <Button variant="destructive" onClick={() => selectedEvent && handleDeleteEvent(selectedEvent.id)}>
+            <Button className="text-center bg-[#c33f3f] text-white" variant="destructive" onClick={() => selectedEvent && handleDeleteEvent(selectedEvent.id)}>
               Delete
             </Button>
             <Button variant="outline" onClick={() => setIsViewDialogOpen(false)}>

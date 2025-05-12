@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hook';
 import Sidebar from '@/components/layout/SideBar';
@@ -11,7 +11,7 @@ export default function DashboardLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const sidebarOpen=true;
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const router = useRouter();
     const pathname = usePathname();
@@ -23,9 +23,7 @@ export default function DashboardLayout({
         }
     }, [isAuthenticated, router, pathname]);
 
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-    };
+  
 
     if (!isAuthenticated) {
         return null; // Return null while redirecting
@@ -34,7 +32,7 @@ export default function DashboardLayout({
     return (
         <>
             <div className="flex flex-col flex-1 overflow-hidden">
-                <Header toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />  
+                <Header/>  
             </div>
             <div className="flex h-[calc(100vh-64px)] overflow-hidden">
                 <Sidebar isOpen={sidebarOpen} />
