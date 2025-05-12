@@ -85,7 +85,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       path: '/',
     });
 
-    router.push('/dashboard');
+    router.push('/app/appealTable');
   } catch (error) {
     console.error('Login failed:', error); // Log the error
     dispatch(loginFailure('Login failed'));
