@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import {
     LayoutDashboard,
     Calendar,
@@ -13,6 +14,8 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../ui/Button';
+import { useAppDispatch } from '@/redux/hook';
+import { logout } from '@/redux/slices/authSlice';
 
 interface SidebarProps {
     isOpen: boolean;
@@ -26,7 +29,7 @@ interface SidebarItemProps {
     className?: string;
 }
 
-function SidebarItem({ href, icon, title, isCollapsed,className }: SidebarItemProps) {
+function SidebarItem({ href, icon, title, isCollapsed, className }: SidebarItemProps) {
     const pathname = usePathname();
     const isActive = pathname === href;
 
@@ -46,9 +49,14 @@ function SidebarItem({ href, icon, title, isCollapsed,className }: SidebarItemPr
 
 export default function Sidebar({ isOpen }: SidebarProps) {
     const [isCollapsed, setIsCollapsed] = useState(false);
-
+    const dispatch = useAppDispatch();
+    const router = useRouter();
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
+    };
+    const handleLogout = async () => {
+        dispatch(logout())
+        router.push('/login')
     };
 
     if (!isOpen) {
@@ -60,14 +68,14 @@ export default function Sidebar({ isOpen }: SidebarProps) {
             className={`fixed relative inset-y-0 z-20 flex h-full flex-col border-r bg-background transition-all duration-300 md:relative md:z-0  ${isCollapsed ? "w-16" : "w-64"}`}
         >
             <Button
-                    variant="ghost"
-                    size="icon"
-                    className={`hidden md:flex absolute z-10 !h-7 !w-7  bg-white !rounded-full cursor-pointer ${isCollapsed?"top-3 -right-5":"top-7 right-2"}`}
-                    onClick={toggleCollapse}
-                >
-                    {isCollapsed ? <ChevronRight color='#3fc3ac' className="h-4 w-4" strokeWidth={2.75} /> : <ChevronLeft color='#3fc3ac' className="h-4 w-4 " strokeWidth={2.75} />}
-                </Button>
-            <div className={` flex-1 relative flex-col  bg-[#2c4e6c] text-white items-center justify-between ${isCollapsed? "py-5":"m-5 p-3 rounded-xl"}`}>
+                variant="ghost"
+                size="icon"
+                className={`hidden md:flex absolute z-10 !h-7 !w-7  bg-white !rounded-full cursor-pointer ${isCollapsed ? "top-3 -right-5" : "top-7 right-2"}`}
+                onClick={toggleCollapse}
+            >
+                {isCollapsed ? <ChevronRight color='#3fc3ac' className="h-4 w-4" strokeWidth={2.75} /> : <ChevronLeft color='#3fc3ac' className="h-4 w-4 " strokeWidth={2.75} />}
+            </Button>
+            <div className={` flex-1 relative flex-col  bg-[#2c4e6c] text-white items-center justify-between ${isCollapsed ? "py-5" : "m-5 p-3 rounded-xl"}`}>
                 <nav className="grid gap-2 px-2">
                     <SidebarItem
                         href="/app/dashboard"
@@ -77,7 +85,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                     />
                     <SidebarItem
                         href="/app/appealTable"
-                        icon={<Landmark  className="h-5 w-5" />}
+                        icon={<Landmark className="h-5 w-5" />}
                         title="Appeals Letter"
                         isCollapsed={isCollapsed}
                     />
@@ -87,9 +95,9 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                         title="Calendar"
                         isCollapsed={isCollapsed}
                     />
-                    
+
                 </nav>
-                <nav className={`grid absolute bottom-0 left-0 w-full  gap-2 mb-5 ${isCollapsed?"px-2":"p-4"}`}>
+                <nav className={`grid absolute bottom-0 left-0 w-full  gap-2 mb-5 ${isCollapsed ? "px-2" : "p-4"}`}>
 
                     <SidebarItem
                         href="/app/settings"
@@ -98,8 +106,8 @@ export default function Sidebar({ isOpen }: SidebarProps) {
                         isCollapsed={isCollapsed}
                         className='mb-4 '
                     />
-                    <Button className=' text-center bg-[#3fc3ac] text-white' >
-                      <LogOut className="h-5 w-5" /> {isCollapsed ? '':'Logout'} 
+                    <Button onClick={handleLogout} className=' text-center bg-[#3fc3ac] text-white' >
+                        <LogOut className="h-5 w-5" /> {isCollapsed ? '' : 'Logout'}
                     </Button>
                 </nav>
             </div>
