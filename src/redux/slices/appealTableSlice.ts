@@ -50,7 +50,7 @@ const generateFakeTaxRecords = (count: number): TaxRecord[] => {
 };
 
 const initialState: TableState = {
-  items: generateFakeTaxRecords(5),
+  items: generateFakeTaxRecords(40),
   isLoading: false,
   error: null,
 };
