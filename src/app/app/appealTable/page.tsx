@@ -52,7 +52,6 @@ export default function TablePage() {
   };
 
 const handleSubmit = () => {
-  console.log('Form Data:', formData);
 
   // Validation for required fields
   if (!formData.taxYear || !formData.company || !formData.state || !formData.assessor || !formData.accountNumber || !formData.appealDeadline) {
@@ -63,7 +62,13 @@ const handleSubmit = () => {
   if (selectedUser.id) {
     dispatch(updateRecord({ ...formData, id: selectedUser.id }));
   } else {
-    dispatch(addRecord(formData));
+    const newRecord={
+      ...formData,
+      id: `TR${users.length + 1}`, // Generate a new ID
+      appealedDate:"Not Applicable",
+      appliedBy:"Not Applicable",
+    }
+    dispatch(addRecord(newRecord));
   }
   setAddDialogOpen(false);
   setFormData(initialFormData);
